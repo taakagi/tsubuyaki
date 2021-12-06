@@ -1,32 +1,36 @@
 package tsubuyaki.views.empty;
 
-import com.vaadin.flow.component.html.H2;
-import com.vaadin.flow.component.html.Image;
-import com.vaadin.flow.component.html.Paragraph;
+import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
+import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 
-@PageTitle("Empty")
+@PageTitle("tsubuyaki")
 @Route(value = "empty")
 @RouteAlias(value = "")
 public class EmptyView extends VerticalLayout {
-
+    
     public EmptyView() {
-        setSpacing(false);
-
-        Image img = new Image("images/empty-plant.png", "placeholder plant");
-        img.setWidth("200px");
-        add(img);
-
-        add(new H2("This place intentionally left empty"));
-        add(new Paragraph("It’s a place where you can grow your own UI 🤗"));
-
-        setSizeFull();
-        setJustifyContentMode(JustifyContentMode.CENTER);
-        setDefaultHorizontalComponentAlignment(Alignment.CENTER);
-        getStyle().set("text-align", "center");
+        VerticalLayout tsubuyaki= new VerticalLayout();
+        TextField nameField=new TextField("");
+        TextField contextField=new TextField("");
+        Button button=new Button("Tsubuyaku");
+        button.addClickListener(click->{
+            add(new Label(nameField.getValue()+":"+contextField.getValue()));
+        });
+        add(
+            new H1("tsubuyaki"),
+            tsubuyaki,
+            new HorizontalLayout(
+                nameField,
+                contextField,
+                button
+            )
+        );
     }
-
 }
